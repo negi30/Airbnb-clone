@@ -1,4 +1,4 @@
-# Airbnb: an Airbnb clone
+# An Airbnb Clone
 
 A full-stack clone of Airbnb's browse → search → book → host workflow.
 
