@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: airbnb-clone-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    # trust Render's proxy so request URLs (e.g. uploaded image links) come out as https://
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips='*'
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: CORS_ORIGINS
+        value: "*"
+      # slot times and "today" are local-time; Render servers default to UTC
+      - key: TZ
+        value: Asia/Kolkata
